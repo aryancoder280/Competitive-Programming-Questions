@@ -6,11 +6,15 @@ typedef long long int ll;
 
 int main()
 {
-        int n,m;
+        ll n,m;
         cin>>n>>m;
 
         double red = 2*n;
         double green = 5*n;
         double blue = 8*n;
-        cout<< ceil(red/m) + ceil(green/m) + ceil(blue/m);
+        ll r = ceil(red/m);
+        ll g = ceil(green/m);
+        ll b = ceil(blue/m);
+        ll sum = r + g + b;
+        cout<<  sum;
 }
