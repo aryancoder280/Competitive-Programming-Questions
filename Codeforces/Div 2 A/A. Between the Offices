@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+#define M 1000000007
+using namespace std;
+typedef long long int ll;
+
+
+int main()
+{
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    int settle=0,fran=0;
+    for(int i=0;i<n-1;i++)
+    {
+        if(s[i]!=s[i+1])
+        {
+            if(s[i]=='S')
+                settle++;
+            else
+                fran++;
+        }
+    }
+    if(settle>fran)
+        cout<<"YES\n";
+    else
+        cout<<"NO\n";
+}
