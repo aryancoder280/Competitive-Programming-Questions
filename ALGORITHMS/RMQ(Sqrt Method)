@@ -1,0 +1,79 @@
+#include <bits/stdc++.h>
+#define M 1000000007
+using namespace std;
+
+typedef long long int ll;
+
+void update(int input[],int n,int block_size,vector<int>&block,int index,int val)
+{
+    input[index] = val;
+    int blockItBelongsTo = index/block_size;
+    block[blockItBelongsTo] = min(block[blockItBelongsTo], val);
+}
+void query(int input[],int n,int block_size, vector<int>block,int l,int r,int &ans)
+{
+    while(l<=r && l%block_size!=0)//traversing first block
+    {
+        ans = min(ans, input[l]);
+        l++;
+    }
+    while(l+block_size<=r)//blocks which are totally covered
+    {
+        ans = min(ans, block[l/block_size]);
+        l+=block_size;
+    }
+    while(l<=r)//traversing last block
+    {
+        ans = min(ans, input[l]);
+        l++;
+    }
+
+}
+
+void preprocess(int input[],int n,int block_size,vector<int>&block)
+{
+    int index=-1;
+    for(int i=0;i<n;i++)
+    {
+        if((i%block_size)==0)
+        {
+            index++;
+        }
+        block[index] = min(block[index],input[i]);
+    }
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+
+    int input[n];
+    int block_size = sqrt(n);
+   vector<int>block(block_size,INT_MAX);
+
+    for(int i=0;i<n;i++)
+        cin>>input[i];
+
+    preprocess(input,n,block_size,block);
+    
+    for(int i=0;i<block_size;i++)
+    cout<<block[i]<<" ";
+    cout<<endl;
+    
+    int l,r,ans=INT_MAX;
+    cin>>l>>r;
+    query(input,n,block_size,block,l,r,ans);
+    cout<<ans<<endl;
+    
+    update(input,n,block_size,block,7,-3);
+    for(int i=0;i<block_size;i++)
+    cout<<block[i]<<" ";
+    cout<<endl;
+    
+    ans = INT_MAX;
+    query(input,n,block_size,block,5,8,ans);
+    cout<<ans<<endl;
+    
+    
+}
