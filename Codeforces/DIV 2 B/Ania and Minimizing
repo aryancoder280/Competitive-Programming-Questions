@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+#define M 1000000007
+using namespace std;
+typedef long long int ll;
+int main()
+{
+  int n,k;
+  cin>>n>>k;
+    string s;
+    cin>>s;
+    if(k==0)
+    {
+        cout<<s;
+    }
+    else if(s.size()==1)
+    {
+        cout<<0;
+    }
+    else
+    {
+        if(s[0]!='1')
+        {
+            s[0]='1';
+            k--;
+        }
+        for(int i=1;i<s.size() && k;i++)
+        {
+            if(s[i]!='0')
+            {s[i]='0';k--;}
+        }
+        cout<<s<<endl;
+    }
+
+
+}
