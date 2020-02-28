@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+#define M 1000000007
+using namespace std;
+typedef long long int ll;
+int main()
+{
+    int n,a,criminal=0;
+    cin>>n>>a;
+    a--;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    int l = a-1,r = a+1,count;
+    if(arr[a]==1)
+        criminal++;
+    while(l>=0||r!=n)
+    {
+         count=0;
+        if(l>=0)
+        {
+            if(arr[l]==1)
+                count++;
+            else
+                count--;
+            l--;
+        }
+        if(r<n)
+        {
+            if(arr[r]==1)
+                count++;
+            else
+                count--;
+            r++;
+        }
+        if(count>0)
+        criminal+=count;
+
+    }
+    cout<<criminal;
+}
